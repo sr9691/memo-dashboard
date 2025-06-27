@@ -1,0 +1,87 @@
+﻿/**
+ * MEMO Marketing Group - Shared Accessibility Styles
+ * 
+ * Accessibility features and responsive design utilities
+ * 
+ * @package VisitorDashboard
+ * @version 1.0.0
+ */
+
+/* Focus Visible Support */
+.memo-btn:focus-visible,
+.memo-input:focus-visible,
+.memo-select:focus-visible,
+.memo-admin-input:focus-visible,
+.memo-admin-select:focus-visible {
+    outline: 2px solid var(--memo-secondary);
+    outline-offset: 2px;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .memo-btn-primary,
+    .memo-admin-btn-primary {
+        background: #000000;
+        border: 2px solid #ffffff;
+    }
+    
+    .memo-btn-secondary,
+    .memo-admin-btn-secondary {
+        background: #ffffff;
+        border: 2px solid #000000;
+        color: #000000;
+    }
+    
+    .memo-input,
+    .memo-select,
+    .memo-admin-input,
+    .memo-admin-select,
+    .memo-admin-textarea {
+        border-width: 2px;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .memo-sidebar,
+    .memo-action-buttons,
+    .memo-btn,
+    .memo-admin-header,
+    .memo-admin-nav,
+    .memo-admin-btn,
+    .button {
+        display: none !important;
+    }
+    
+    .memo-main-container {
+        flex-direction: column;
+    }
+    
+    .memo-main-content,
+    .memo-admin-content {
+        padding: 0;
+    }
+    
+    .memo-section,
+    .memo-admin-metabox,
+    .memo-admin-table-wrapper {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+    
+    .memo-admin-wrapper {
+        margin: 0;
+        background: white;
+    }
+}

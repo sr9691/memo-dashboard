@@ -1,0 +1,796 @@
+﻿/**
+ * MEMO Marketing Group - WordPress Admin Dashboard Styles
+ * 
+ * WordPress admin-specific styles for the Interactive Visitor Management Dashboard
+ * 
+ * @package VisitorDashboard
+ * @version 1.0.0
+ * @author ANSA Solutions + Claude
+ */
+
+/* Import Shared Variables and Utilities */
+@import url('../shared/variables.css');
+@import url('../shared/utilities.css');
+@import url('../shared/accessibility.css');
+/* WordPress Admin Body Overrides */
+.toplevel_page_visitor-dashboard,
+.visitor-dashboard_page_visitor-users,
+.visitor-dashboard_page_visitor-settings,
+.visitor-dashboard_page_visitor-exports {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* Hide WordPress admin elements for full-screen dashboard */
+.visitor-dashboard-fullscreen #adminmenumain,
+.visitor-dashboard-fullscreen #wpadminbar,
+.visitor-dashboard-fullscreen #wpfooter {
+    display: none !important;
+}
+
+.visitor-dashboard-fullscreen #wpcontent {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+.visitor-dashboard-fullscreen #wpbody-content {
+    padding-bottom: 0 !important;
+}
+
+/* WordPress Admin Page Wrapper */
+.memo-admin-wrapper {
+    margin: -20px -20px -10px -2px;
+    background: var(--memo-admin-bg);
+    min-height: calc(100vh - 32px);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.memo-admin-wrapper * {
+    box-sizing: border-box;
+}
+
+/* WordPress Admin Header Integration */
+.memo-admin-header {
+    background: linear-gradient(135deg, var(--memo-admin-primary) 0%, var(--memo-admin-secondary) 100%);
+    color: white;
+    padding: 20px 30px;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(44, 67, 93, 0.15);
+}
+
+.memo-admin-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(66, 148, 204, 0.1) 0%, transparent 70%);
+    animation: admin-pulse 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes admin-pulse {
+    0%, 100% { 
+        transform: scale(1); 
+        opacity: 0.5; 
+    }
+    50% { 
+        transform: scale(1.1); 
+        opacity: 0.3; 
+    }
+}
+
+.memo-admin-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Admin Logo Section */
+.memo-admin-logo-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.memo-admin-logo {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(145deg, var(--memo-admin-secondary), var(--memo-admin-primary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+    box-shadow: 0 4px 15px rgba(44, 67, 93, 0.3);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.memo-admin-logo::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--memo-admin-secondary), var(--memo-admin-primary), var(--memo-admin-secondary));
+    border-radius: 50%;
+    z-index: -1;
+    animation: admin-rotate 3s linear infinite;
+}
+
+@keyframes admin-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.memo-admin-brand-text {
+    font-weight: 300;
+    font-size: 1.6rem;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.memo-admin-brand-text .memo {
+    font-weight: 700;
+}
+
+.memo-admin-brand-text .group {
+    font-weight: 300;
+    opacity: 0.9;
+    font-size: 0.85em;
+    display: block;
+}
+
+/* Admin Navigation Tabs */
+.memo-admin-nav {
+    background: white;
+    border-bottom: 1px solid var(--memo-admin-border);
+    padding: 0 30px;
+}
+
+.memo-admin-nav-tabs {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.memo-admin-nav-tab {
+    margin: 0;
+}
+
+.memo-admin-nav-link {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: var(--memo-admin-text-secondary);
+    font-weight: 500;
+    font-size: 14px;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.memo-admin-nav-link:hover,
+.memo-admin-nav-link:focus {
+    color: var(--memo-admin-primary);
+    background: rgba(66, 148, 204, 0.05);
+}
+
+.memo-admin-nav-link.active {
+    color: var(--memo-admin-primary);
+    border-bottom-color: var(--memo-admin-secondary);
+    background: rgba(66, 148, 204, 0.05);
+}
+
+/* Admin Content Area */
+.memo-admin-content {
+    padding: 30px;
+    background: var(--memo-admin-bg);
+    min-height: calc(100vh - 200px);
+}
+
+.memo-admin-content-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* WordPress Admin Page Title */
+.memo-admin-page-title {
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--memo-admin-text);
+    margin: 0 0 30px 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid var(--memo-admin-border);
+    padding-bottom: 15px;
+}
+
+.memo-admin-page-title .accent {
+    font-weight: 600;
+    color: var(--memo-admin-secondary);
+}
+
+.memo-admin-page-title .dashicons {
+    font-size: 24px;
+    color: var(--memo-admin-secondary);
+}
+
+/* WordPress Admin Notices Integration */
+.memo-admin-notice {
+    margin: 15px 0;
+    padding: 12px 20px;
+    border-left: 4px solid var(--memo-admin-secondary);
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 0 4px 4px 0;
+}
+
+.memo-admin-notice.notice-success {
+    border-left-color: #00a32a;
+}
+
+.memo-admin-notice.notice-warning {
+    border-left-color: #dba617;
+}
+
+.memo-admin-notice.notice-error {
+    border-left-color: #d63638;
+}
+
+.memo-admin-notice.notice-info {
+    border-left-color: var(--memo-admin-secondary);
+}
+
+.memo-admin-notice p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* WordPress Admin Tables */
+.memo-admin-table-wrapper {
+    background: white;
+    border: 1px solid var(--memo-admin-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.memo-admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 0;
+}
+
+.memo-admin-table th {
+    background: #f6f7f7;
+    padding: 15px 20px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--memo-admin-text);
+    border-bottom: 1px solid var(--memo-admin-border);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.memo-admin-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f1;
+    vertical-align: middle;
+}
+
+.memo-admin-table tr:hover {
+    background: rgba(66, 148, 204, 0.02);
+}
+
+.memo-admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* WordPress Admin Buttons */
+.memo-admin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    user-select: none;
+    line-height: 1.4;
+}
+
+.memo-admin-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(66, 148, 204, 0.3);
+}
+
+.memo-admin-btn-primary {
+    background: linear-gradient(135deg, var(--memo-admin-primary), var(--memo-admin-secondary));
+    color: white;
+}
+
+.memo-admin-btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(66, 148, 204, 0.3);
+    color: white;
+}
+
+.memo-admin-btn-secondary {
+    background: white;
+    color: var(--memo-admin-text);
+    border: 1px solid var(--memo-admin-border);
+}
+
+.memo-admin-btn-secondary:hover {
+    border-color: var(--memo-admin-secondary);
+    color: var(--memo-admin-secondary);
+    transform: translateY(-1px);
+}
+
+.memo-admin-btn-danger {
+    background: #d63638;
+    color: white;
+}
+
+.memo-admin-btn-danger:hover {
+    background: #b32d2e;
+    color: white;
+    transform: translateY(-1px);
+}
+
+.memo-admin-btn-small {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+.memo-admin-btn-large {
+    padding: 12px 24px;
+    font-size: 14px;
+}
+
+/* WordPress Admin Forms */
+.memo-admin-form-table {
+    background: white;
+    border: 1px solid var(--memo-admin-border);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.memo-admin-form-row {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.memo-admin-form-row:last-child {
+    margin-bottom: 0;
+}
+
+.memo-admin-form-label {
+    display: block;
+    font-weight: 600;
+    color: var(--memo-admin-text);
+    margin-bottom: 8px;
+    font-size: 14px;
+    min-width: 150px;
+    flex-shrink: 0;
+}
+
+.memo-admin-form-field {
+    flex: 1;
+}
+
+.memo-admin-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 8px 12px;
+    border: 1px solid var(--memo-admin-border);
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    background: white;
+    transition: border-color 0.3s ease;
+}
+
+.memo-admin-input:focus {
+    outline: none;
+    border-color: var(--memo-admin-secondary);
+    box-shadow: 0 0 0 1px var(--memo-admin-secondary);
+}
+
+.memo-admin-select {
+    width: 100%;
+    max-width: 400px;
+    padding: 8px 12px;
+    border: 1px solid var(--memo-admin-border);
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+}
+
+.memo-admin-textarea {
+    width: 100%;
+    max-width: 600px;
+    min-height: 100px;
+    padding: 12px;
+    border: 1px solid var(--memo-admin-border);
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    background: white;
+    resize: vertical;
+}
+
+.memo-admin-help-text {
+    font-size: 13px;
+    color: var(--memo-admin-text-secondary);
+    margin-top: 6px;
+    line-height: 1.4;
+}
+
+/* WordPress Admin Meta Boxes */
+.memo-admin-metabox {
+    background: white;
+    border: 1px solid var(--memo-admin-border);
+    border-radius: 8px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.memo-admin-metabox-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--memo-admin-border);
+    background: #f6f7f7;
+    border-radius: 8px 8px 0 0;
+}
+
+.memo-admin-metabox-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--memo-admin-text);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.memo-admin-metabox-content {
+    padding: 20px;
+}
+
+/* Analytics Cards for Admin */
+.memo-admin-analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.memo-admin-analytics-card {
+    background: white;
+    border: 1px solid var(--memo-admin-border);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.memo-admin-analytics-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.memo-admin-analytics-card::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--memo-admin-primary), var(--memo-admin-secondary));
+    margin: -20px -20px 15px -20px;
+    border-radius: 8px 8px 0 0;
+}
+
+.memo-admin-card-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--memo-admin-primary), var(--memo-admin-secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    margin: 0 auto 15px;
+}
+
+.memo-admin-card-title {
+    font-size: 13px;
+    color: var(--memo-admin-text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.memo-admin-card-value {
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--memo-admin-text);
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.memo-admin-card-change {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-weight: 500;
+}
+
+/* WordPress Admin Pagination */
+.memo-admin-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0;
+    margin-top: 20px;
+    border-top: 1px solid var(--memo-admin-border);
+}
+
+.memo-admin-pagination a,
+.memo-admin-pagination span {
+    padding: 8px 12px;
+    text-decoration: none;
+    color: var(--memo-admin-text);
+    border: 1px solid var(--memo-admin-border);
+    border-radius: 4px;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.memo-admin-pagination a:hover {
+    background: var(--memo-admin-secondary);
+    color: white;
+    border-color: var(--memo-admin-secondary);
+}
+
+.memo-admin-pagination .current {
+    background: var(--memo-admin-primary);
+    color: white;
+    border-color: var(--memo-admin-primary);
+}
+
+/* WordPress Admin Loading States */
+.memo-admin-loading {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid var(--memo-admin-secondary);
+    border-radius: 50%;
+    animation: admin-spin 1s linear infinite;
+    margin-right: 8px;
+}
+
+@keyframes admin-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* WordPress Admin Responsive Design */
+@media screen and (max-width: 782px) {
+    .memo-admin-wrapper {
+        margin: -10px -10px -5px -2px;
+    }
+    
+    .memo-admin-header {
+        padding: 15px 20px;
+    }
+    
+    .memo-admin-header-content {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .memo-admin-brand-text {
+        font-size: 1.4rem;
+    }
+    
+    .memo-admin-logo {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .memo-admin-nav {
+        padding: 0 20px;
+    }
+    
+    .memo-admin-nav-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .memo-admin-nav-link {
+        padding: 12px 15px;
+        font-size: 13px;
+    }
+    
+    .memo-admin-content {
+        padding: 20px;
+    }
+    
+    .memo-admin-analytics-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .memo-admin-form-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .memo-admin-form-label {
+        min-width: auto;
+    }
+    
+    .memo-admin-table-wrapper {
+        overflow-x: auto;
+    }
+    
+    .memo-admin-table {
+        min-width: 600px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .memo-admin-content {
+        padding: 15px;
+    }
+    
+    .memo-admin-metabox-content {
+        padding: 15px;
+    }
+    
+    .memo-admin-analytics-card {
+        padding: 15px;
+    }
+    
+    .memo-admin-card-value {
+        font-size: 1.8rem;
+    }
+}
+
+/* WordPress Admin Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --memo-admin-bg: #1e1e1e;
+        --memo-admin-content-bg: #2c2c2c;
+        --memo-admin-border: #484848;
+        --memo-admin-text: #ffffff;
+        --memo-admin-text-secondary: #cccccc;
+    }
+    
+    .memo-admin-wrapper {
+        background: var(--memo-admin-bg);
+    }
+    
+    .memo-admin-metabox,
+    .memo-admin-table-wrapper,
+    .memo-admin-analytics-card,
+    .memo-admin-form-table {
+        background: var(--memo-admin-content-bg);
+        border-color: var(--memo-admin-border);
+    }
+    
+    .memo-admin-input,
+    .memo-admin-select,
+    .memo-admin-textarea {
+        background: var(--memo-admin-content-bg);
+        border-color: var(--memo-admin-border);
+        color: var(--memo-admin-text);
+    }
+}
+
+/* WordPress Admin Print Styles */
+@media print {
+    .memo-admin-header,
+    .memo-admin-nav,
+    .memo-admin-btn,
+    .button {
+        display: none !important;
+    }
+    
+    .memo-admin-wrapper {
+        margin: 0;
+        background: white;
+    }
+    
+    .memo-admin-content {
+        padding: 0;
+    }
+    
+    .memo-admin-metabox,
+    .memo-admin-table-wrapper {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+}
+
+/* WordPress Admin Accessibility */
+.memo-admin-sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .memo-admin-btn-primary {
+        background: #000000;
+        border: 2px solid #ffffff;
+    }
+    
+    .memo-admin-btn-secondary {
+        background: #ffffff;
+        border: 2px solid #000000;
+        color: #000000;
+    }
+    
+    .memo-admin-input,
+    .memo-admin-select,
+    .memo-admin-textarea {
+        border-width: 2px;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

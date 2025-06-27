@@ -1,0 +1,77 @@
+﻿/**
+ * MEMO Marketing Group - Shared Utility Classes
+ * 
+ * Reusable utility classes for common styling needs
+ * 
+ * @package VisitorDashboard
+ * @version 1.0.0
+ */
+
+/* Layout Utilities */
+.memo-hidden {
+    display: none !important;
+}
+
+.memo-sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Text Alignment */
+.memo-text-center {
+    text-align: center !important;
+}
+
+.memo-text-right {
+    text-align: right !important;
+}
+
+.memo-text-left {
+    text-align: left !important;
+}
+
+/* Spacing Utilities */
+.memo-mb-0 {
+    margin-bottom: 0 !important;
+}
+
+.memo-mt-lg {
+    margin-top: var(--spacing-lg) !important;
+}
+
+.memo-mb-lg {
+    margin-bottom: var(--spacing-lg) !important;
+}
+
+.memo-p-0 {
+    padding: 0 !important;
+}
+
+/* Loading Spinner */
+.memo-loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid var(--memo-secondary);
+    border-radius: var(--radius-full);
+    animation: spin 1s linear infinite;
+}
+
+.memo-admin-loading {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid var(--memo-admin-secondary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+}

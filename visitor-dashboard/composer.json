@@ -1,0 +1,9 @@
+﻿{
+    "name": "ansa-solutions/visitor-dashboard",
+    "description": "WordPress plugin for visitor management dashboard",
+    "type": "wordpress-plugin",
+    "license": "proprietary",
+    "require": {
+        "php": ">=7.4"
+    }
+}
