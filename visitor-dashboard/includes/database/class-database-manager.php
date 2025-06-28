@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class Visitor_Dashboard_Database_Manager {
+class VisitorDashboard_Database  {
     
     /**
      * Create all plugin tables

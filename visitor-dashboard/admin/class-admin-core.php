@@ -12,6 +12,9 @@ if (!defined('WPINC')) {
     die;
 }
 
+// Require database class for static calls
+require_once VISITOR_DASHBOARD_PLUGIN_DIR . 'includes/database/class-database-manager.php';
+
 class Visitor_Dashboard_Admin_Core {
 
     private $plugin_name;
