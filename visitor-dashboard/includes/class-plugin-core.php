@@ -82,13 +82,30 @@ class Visitor_Dashboard_Plugin_Core {
     }
 
     private function define_admin_hooks() {
-        // Enqueue admin styles and scripts
-        $this->loader->add_action('admin_enqueue_scripts', 'visitor_dashboard_admin_styles');
+        if (is_admin()) {
+            $plugin_admin = new Visitor_Dashboard_Admin_Core($this->get_plugin_name(), $this->get_version());
+            
+            // Add admin menu
+            $this->loader->add_action('admin_menu', $plugin_admin, 'add_admin_menu');
+            
+            // Hide admin menu for client users
+            $this->loader->add_action('admin_head', $plugin_admin, 'hide_admin_menu');
+
+            // Enqueue admin styles and scripts
+            $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
+            $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
+            
+            // Add admin notices
+            $this->loader->add_action('admin_notices', $plugin_admin, 'add_admin_notices');
+            
+            // Customize admin footer
+            $this->loader->add_filter('admin_footer_text', $plugin_admin, 'admin_footer_text');
+        }
     }
 
     private function define_public_hooks() {
         // Enqueue public styles and scripts
-        $this->loader->add_action('wp_enqueue_scripts', 'visitor_dashboard_public_styles');
+        // $this->loader->add_action('wp_enqueue_scripts', 'visitor_dashboard_public_styles');
     }
 
     private function define_api_hooks() {
@@ -110,4 +127,5 @@ class Visitor_Dashboard_Plugin_Core {
         return $this->version;
     }
 }
+
 

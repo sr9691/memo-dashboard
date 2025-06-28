@@ -648,7 +648,8 @@ if ($selected_client_id) {
             </div>
         </div>
     </div>
-    
+    <div id="dashboard-content">
+    </div>
     <script>
         // Global variables
         let currentClientId = <?php echo $selected_client_id ? $selected_client_id : 'null'; ?>;
@@ -1050,7 +1051,6 @@ if ($selected_client_id) {
             return num.toString();
         }
         
-        // Show/hide sections (for future navigation)
         function showSection(section) {
             // Remove active class from all nav links
             document.querySelectorAll('.nav-link').forEach(link => {
@@ -1060,8 +1060,36 @@ if ($selected_client_id) {
             // Add active class to clicked nav link
             event.target.classList.add('active');
             
-            // For now, all sections show the same content
+            // Load content via AJAX
+            const contentContainer = document.getElementById('dashboard-content');
+            
+            // For now, load content from the admin pages
             // This can be expanded for different views
+            const pageMap = {
+                'dashboard': 'admin-dashboard.php',
+                'users': 'user-management.php',
+                'crm-queue': 'crm-queue.php',
+                'settings': 'settings.php'
+            };
+            
+            if (pageMap[section]) {
+                fetch('<?php echo VISITOR_DASHBOARD_PLUGIN_URL; ?>' + 'admin/views/pages/' + pageMap[section])
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                    })
+                    .then(html => {
+                        contentContainer.innerHTML = html;
+                    })
+                    .catch(error => {
+                        console.error('Error loading section:', error);
+                        contentContainer.innerHTML = '<div class="notice notice-error"><p>Error loading section. Please check the console for details.</p></div>';
+                    });
+            } else {
+                contentContainer.innerHTML = '<div class="notice notice-warning"><p>Section not found.</p></div>';
+            }
         }
     </script>
 </body>

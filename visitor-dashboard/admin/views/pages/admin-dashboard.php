@@ -804,6 +804,6 @@ function showSystemHealth() {
 }
 
 function manageUsers() {
-    window.location.href = '<?php echo admin_url('admin.php?page=visitor-dashboard-users'); ?>';
+    window.location.href = '<?php echo admin_url('admin.php?page=user-management'); ?>';
 }
 </script>

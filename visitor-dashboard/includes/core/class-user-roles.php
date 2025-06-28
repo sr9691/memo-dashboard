@@ -21,6 +21,9 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Require database class for static calls
+require_once VISITOR_DASHBOARD_PLUGIN_DIR . 'includes/database/class-database-manager.php';
+
 class VisitorDashboard_User_Roles {
     
     /**
@@ -226,7 +229,7 @@ class VisitorDashboard_User_Roles {
      */
     public static function create_dashboard_user($wp_user_id, $client_id = null, $role = 'client_user') {
         global $wpdb;
-        $prefix = VisitorDashboard_Database::get_table_prefix();
+        $prefix = Visitor_Dashboard_Database_Manager::get_table_prefix(); // Corrected class name
         
         $wp_user = get_user_by('id', $wp_user_id);
         if (!$wp_user) {
@@ -276,7 +279,7 @@ class VisitorDashboard_User_Roles {
      */
     public static function get_dashboard_user($wp_user_id) {
         global $wpdb;
-        $prefix = VisitorDashboard_Database::get_table_prefix();
+        $prefix = Visitor_Dashboard_Database_Manager::get_table_prefix(); // Corrected class name
         
         return $wpdb->get_row($wpdb->prepare(
             "SELECT du.*, c.account_name, c.groundtruth_account_id 
@@ -292,7 +295,7 @@ class VisitorDashboard_User_Roles {
      */
     public static function get_user_client_id($wp_user_id) {
         global $wpdb;
-        $prefix = VisitorDashboard_Database::get_table_prefix();
+        $prefix = Visitor_Dashboard_Database_Manager::get_table_prefix(); // Corrected class name
         
         return $wpdb->get_var($wpdb->prepare(
             "SELECT client_id FROM {$prefix}dashboard_users WHERE wp_user_id = %d AND status = 'active'",
@@ -319,7 +322,7 @@ class VisitorDashboard_User_Roles {
      */
     public static function get_user_accessible_clients($wp_user_id) {
         global $wpdb;
-        $prefix = VisitorDashboard_Database::get_table_prefix();
+        $prefix = Visitor_Dashboard_Database_Manager::get_table_prefix(); // Corrected class name
         
         // Admins can access all clients
         if (user_can($wp_user_id, 'manage_all_visitors')) {
@@ -345,7 +348,7 @@ class VisitorDashboard_User_Roles {
      */
     public static function update_user_login($wp_user_id) {
         global $wpdb;
-        $prefix = VisitorDashboard_Database::get_table_prefix();
+        $prefix = Visitor_Dashboard_Database_Manager::get_table_prefix(); // Corrected class name
         
         $wpdb->query($wpdb->prepare(
             "UPDATE {$prefix}dashboard_users 
@@ -360,7 +363,7 @@ class VisitorDashboard_User_Roles {
      */
     public static function deactivate_dashboard_user($wp_user_id, $deleted_by = null) {
         global $wpdb;
-        $prefix = VisitorDashboard_Database::get_table_prefix();
+        $prefix = Visitor_Dashboard_Database_Manager::get_table_prefix(); // Corrected class name
         
         $result = $wpdb->update(
             "{$prefix}dashboard_users",
@@ -394,7 +397,7 @@ class VisitorDashboard_User_Roles {
      */
     private static function log_user_action($action, $entity_id, $user_id) {
         global $wpdb;
-        $prefix = VisitorDashboard_Database::get_table_prefix();
+        $prefix = Visitor_Dashboard_Database_Manager::get_table_prefix(); // Corrected class name
         
         $client_id = self::get_user_client_id($user_id);
         
@@ -438,7 +441,7 @@ class VisitorDashboard_User_Roles {
      */
     public static function get_all_dashboard_users($status = 'active') {
         global $wpdb;
-        $prefix = VisitorDashboard_Database::get_table_prefix();
+        $prefix = Visitor_Dashboard_Database_Manager::get_table_prefix(); // Corrected class name
         
         return $wpdb->get_results($wpdb->prepare(
             "SELECT du.*, c.account_name, u.user_login, u.user_registered
@@ -456,7 +459,7 @@ class VisitorDashboard_User_Roles {
      */
     public static function get_user_statistics() {
         global $wpdb;
-        $prefix = VisitorDashboard_Database::get_table_prefix();
+        $prefix = Visitor_Dashboard_Database_Manager::get_table_prefix(); // Corrected class name
         
         $stats = array();
         
